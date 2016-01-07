@@ -35,6 +35,7 @@ module Jekyll
       end
 
       def sass_build_configuration_options(overrides)
+        puts jekyll_sass_configuration
         if safe?
           {
             :load_paths => sass_load_paths,
@@ -75,11 +76,9 @@ module Jekyll
       end
 
       def sass_load_paths
-        if safe?
-          [sass_dir_relative_to_site_source]
-        else
-          (user_sass_load_paths + [sass_dir_relative_to_site_source]).uniq
-        end.select { |load_path| File.directory?(load_path) }
+        (user_sass_load_paths + [sass_dir_relative_to_site_source])
+          .uniq
+          .select { |load_path| File.directory?(load_path) }
       end
 
       def allow_caching?

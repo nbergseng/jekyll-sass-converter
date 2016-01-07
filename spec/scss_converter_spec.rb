@@ -219,12 +219,8 @@ SCSS
         }))
       end
 
-      it "ignores the new load path" do
-        expect(verter.sass_load_paths).not_to include(external_library)
-      end
-
-      it "ensures the sass_dir is the entire load path" do
-        expect(verter.sass_load_paths).to eql([sass_lib("_sass")])
+      it "ensures the sass_dir is still in the load path" do
+        expect(verter.sass_load_paths).to include(sass_lib("_sass"))
       end
     end
 
